@@ -17,13 +17,13 @@ const Header = () => {
         <Image src={"/logo.png"} alt="logo" width={150} height={100} />
 
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <h2 className="hidden md:flex gap-2 items-center border rounded-full py-2 px-10 bg-slate-200">
-              <LayoutGrid className="w-5 h-5" /> Category
+              <LayoutGrid className="w-5 h-5 cursor-pointer" /> Category
             </h2>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>Browse Category</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Profile</DropdownMenuItem>
             <DropdownMenuItem>Billing</DropdownMenuItem>

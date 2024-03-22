@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Header = () => {
   return (
-    <div className="p-5 shadow-md">
+    <div className="p-5 shadow-md flex justify-between">
       <div className="flex items-center gap-8">
         <Image src={"/logo.png"} alt="logo" width={150} height={100} />
 
@@ -16,7 +16,7 @@ const Header = () => {
           <input type="text" placeholder="Search" className="outline-none" />
         </div>
       </div>
-      <div className="">
+      <div className="flex gap-5 items-center">
         <h2 className="flex items-center text-lg">
           <ShoppingBag /> 0
         </h2>

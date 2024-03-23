@@ -17,6 +17,8 @@ import { useEffect, useState } from "react";
 const Header = () => {
   const [categoryList, setCategoryList] = useState([]);
 
+  // console.log(categoryList[0]?.attributes?.icon?.data[0]?.attributes?.url);
+
   useEffect(() => {
     getCategoryList();
   }, []);
@@ -44,10 +46,14 @@ const Header = () => {
             {categoryList.map((category, index) => (
               <DropdownMenuItem key={index}>
                 <Image
-                  src={category?.attributes?.icon?.data?.attributes?.url}
+                  src={
+                    process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
+                    category?.attributes?.icon?.data[0]?.attributes?.url
+                  }
+                  unoptimized={true}
                   alt="icon"
-                  width={8}
-                  height={8}
+                  width={23}
+                  height={23}
                 />
                 <h2>{category?.attributes?.name}</h2>
               </DropdownMenuItem>

@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { LayoutGrid, Search, ShoppingBag } from "lucide-react";
 import Image from "next/image";
@@ -10,11 +12,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import GlobalApi from "../_utils/GlobalApi";
+import { useEffect } from "react";
 
 const Header = () => {
+  useEffect(() => {
+    getCategoryList();
+  }, []);
+
   const getCategoryList = () => {
     GlobalApi.getCategory().then((res) => {
-      console.log(res);
+      console.log(res.data.data);
     });
   };
 

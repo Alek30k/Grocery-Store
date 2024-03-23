@@ -46,7 +46,7 @@ const Header = () => {
             {categoryList.map((category, index) => (
               <DropdownMenuItem
                 key={index}
-                className="flex gap-2 items-center cursor-pointer"
+                className="flex gap-4 items-center cursor-pointer"
               >
                 <Image
                   src={
@@ -55,10 +55,10 @@ const Header = () => {
                   }
                   unoptimized={true}
                   alt="icon"
-                  width={27}
-                  height={27}
+                  width={30}
+                  height={30}
                 />
-                <h2>{category?.attributes?.name}</h2>
+                <h2 className="text-lg">{category?.attributes?.name}</h2>
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>

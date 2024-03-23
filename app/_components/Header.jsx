@@ -36,7 +36,7 @@ const Header = () => {
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <h2 className="hidden md:flex gap-2 items-center border rounded-full py-2 px-10 bg-slate-200">
+            <h2 className="hidden md:flex gap-2 items-center border rounded-full py-2 px-10 bg-slate-200 cursor-pointer">
               <LayoutGrid className="w-5 h-5 cursor-pointer" /> Category
             </h2>
           </DropdownMenuTrigger>
@@ -44,7 +44,10 @@ const Header = () => {
             <DropdownMenuLabel>Browse Category</DropdownMenuLabel>
             <DropdownMenuSeparator />
             {categoryList.map((category, index) => (
-              <DropdownMenuItem key={index}>
+              <DropdownMenuItem
+                key={index}
+                className="flex gap-2 items-center cursor-pointer"
+              >
                 <Image
                   src={
                     process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
@@ -52,8 +55,8 @@ const Header = () => {
                   }
                   unoptimized={true}
                   alt="icon"
-                  width={23}
-                  height={23}
+                  width={27}
+                  height={27}
                 />
                 <h2>{category?.attributes?.name}</h2>
               </DropdownMenuItem>

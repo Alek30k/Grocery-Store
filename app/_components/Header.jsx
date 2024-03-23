@@ -9,8 +9,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import GlobalApi from "../_utils/GlobalApi";
 
 const Header = () => {
+  const getCategoryList = () => {
+    GlobalApi.getCategory().then((res) => {
+      console.log(res);
+    });
+  };
+
   return (
     <div className="p-5 shadow-sm flex justify-between">
       <div className="flex items-center gap-8">

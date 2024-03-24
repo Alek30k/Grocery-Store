@@ -5,7 +5,7 @@ export default async function Home() {
   const sliderList = await GlobalApi.getSliders();
 
   return (
-    <div className="p-10 px-16">
+    <div className="p-5 md:p-10 px-16">
       <Slider sliderList={sliderList} />
     </div>
   );

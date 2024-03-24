@@ -2,7 +2,9 @@ import Slider from "./_components/Slider";
 import GlobalApi from "./_utils/GlobalApi";
 
 export default async function Home() {
-  const sliderList = await GlobalApi.getSliders();
+  const sliderList = GlobalApi.getSliders();
+
+  console.log(">>>>>", sliderList);
 
   return (
     <div>

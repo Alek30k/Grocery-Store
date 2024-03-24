@@ -16,7 +16,6 @@ import { useEffect, useState } from "react";
 
 const Header = () => {
   const [categoryList, setCategoryList] = useState([]);
-
   // console.log(categoryList[0]?.attributes?.icon?.data[0]?.attributes?.url);
 
   useEffect(() => {

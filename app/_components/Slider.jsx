@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 
 const Slider = ({ sliderList }) => {
+  // console.log(sliderList[0].attributes?.image?.data[0]?.attributes?.url);
   return (
     <Carousel>
       <CarouselContent>
@@ -16,7 +17,7 @@ const Slider = ({ sliderList }) => {
             <Image
               src={
                 process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
-                slider.attributes?.image?.data?.attributes?.url
+                slider.attributes?.image?.data[0]?.attributes?.url
               }
               alt="slider"
               width={1000}

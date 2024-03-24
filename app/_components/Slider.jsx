@@ -8,7 +8,6 @@ import {
 import Image from "next/image";
 
 const Slider = ({ sliderList }) => {
-  // console.log(sliderList[0].attributes?.image?.data[0]?.attributes?.url);
   return (
     <Carousel>
       <CarouselContent>
@@ -22,7 +21,7 @@ const Slider = ({ sliderList }) => {
               alt="slider"
               width={1000}
               height={400}
-              className="w-full"
+              className="w-full h-[400px] object-cover rounded-2xl"
             />
           </CarouselItem>
         ))}

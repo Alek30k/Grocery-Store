@@ -4,10 +4,8 @@ import GlobalApi from "./_utils/GlobalApi";
 export default async function Home() {
   const sliderList = await GlobalApi.getSliders();
 
-  console.log("holas", sliderList);
-
   return (
-    <div>
+    <div className="p-10 px-16">
       <Slider sliderList={sliderList} />
     </div>
   );

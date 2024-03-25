@@ -15,10 +15,21 @@ const ProductItem = ({ product }) => {
         className="h-[200px] w-[200px] object-contain"
       />
       <h2 className="font-bold text-lg">{product?.attributes?.name}</h2>
-      {product?.attributes?.sellingPrice && (
-        <h2 className="">${product?.attributes?.sellingPrice}</h2>
-      )}
-      <h2 className="font-bold line-through">${product?.attributes?.mrp}</h2>
+      <div className=" flex gap-3">
+        {product?.attributes?.sellingPrice && (
+          <h2 className="font-bold text-lg">
+            ${product?.attributes?.sellingPrice}
+          </h2>
+        )}
+        <h2
+          className={`font-bold text-lg ${
+            product?.attributes?.sellingPrice && "line-through text-gray-500"
+          }`}
+        >
+          ${product?.attributes?.mrp}
+        </h2>
+      </div>
+
       <Button
         variant="outline"
         className="text-primary hover:text-white hover:bg-primary"

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const ProductItem = ({ product }) => {
   return (
-    <div className="p-2 md:p-6 flex flex-col items-center justify-center gap-3 border rounded-lg ">
+    <div className="p-2 md:p-6 flex flex-col items-center justify-center gap-3 border rounded-lg hover:scale-105 hover:shadow-lg cursor-pointer transition-all ease-in-out">
       <Image
         src={
           process.env.NEXT_PUBLIC_BACKEND_BASE_URL +

@@ -24,7 +24,7 @@ const Banner = () => {
             alt="banner"
             width={600}
             height={600}
-            className="w-full h-[400px] object-cover"
+            className="w-full h-[400px] object-contain"
           />
         </div>
       </div>

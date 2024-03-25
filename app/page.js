@@ -1,4 +1,5 @@
 import CategoryList from "./_components/CategoryList";
+import Footer from "./_components/Footer";
 import ProductList from "./_components/ProductList";
 import Slider from "./_components/Slider";
 import Banner from "./_components/banner";
@@ -15,6 +16,7 @@ export default async function Home() {
       <CategoryList categoryList={categoryList} />
       <ProductList productList={productList} />
       <Banner />
+      <Footer />
     </div>
   );
 }

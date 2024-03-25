@@ -10,7 +10,7 @@ const ProductItem = ({ product }) => {
         }
         width={500}
         height={200}
-        alt="image"
+        alt={product?.attributes?.name}
       />
     </div>
   );

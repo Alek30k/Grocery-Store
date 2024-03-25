@@ -15,7 +15,7 @@ export default async function Home() {
       <Slider sliderList={sliderList} />
       <CategoryList categoryList={categoryList} />
       <ProductList productList={productList} />
-      <div className="relative px-2  md:px-32 lg:px-64 bg-green-600 w-full h-[300px] flex mt-16 justify-between items-center ">
+      <div className="relative md:px-20 lg:px-32 bg-green-600 w-full h-[300px] flex mt-16 md:justify-between justify-center items-center">
         <div className="flex flex-col w-3/4">
           <div className="">
             <h1 className="grid grid-cols-2 lg:grid-cols-1 text-white font-bold text-2xl md:text-4xl lg:text-6xl w-[650px]">

@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import GlobalApi from "../_utils/GlobalApi";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const Header = () => {
   const [categoryList, setCategoryList] = useState([]);
@@ -31,13 +32,15 @@ const Header = () => {
   return (
     <div className="p-5 shadow-sm flex justify-between">
       <div className="flex items-center gap-8">
-        <Image
-          src={"/logo.png"}
-          alt="logo"
-          width={150}
-          height={100}
-          className="pointer-events-none"
-        />
+        <Link href={"/"}>
+          <Image
+            src={"/logo.png"}
+            alt="logo"
+            width={150}
+            height={100}
+            className="pointer-events-none"
+          />
+        </Link>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

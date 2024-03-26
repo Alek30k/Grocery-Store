@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import ProductItemDetail from "./ProductItemDetail";
 
 const ProductItem = ({ product }) => {
   return (
@@ -20,7 +21,7 @@ const ProductItem = ({ product }) => {
         width={500}
         height={200}
         alt={product?.attributes?.name}
-        className="h-[200px] w-[200px] object-contain"
+        className="h-[200px] w-[200px] object-contain pointer-events-none"
       />
       <h2 className="font-bold text-lg">{product?.attributes?.name}</h2>
       <div className=" flex gap-3">
@@ -39,7 +40,7 @@ const ProductItem = ({ product }) => {
       </div>
 
       <Dialog>
-        <DialogTrigger>
+        <DialogTrigger asChild>
           <Button
             variant="outline"
             className="text-primary hover:text-white hover:bg-primary"
@@ -49,10 +50,8 @@ const ProductItem = ({ product }) => {
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
             <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              <ProductItemDetail product={product} />
             </DialogDescription>
           </DialogHeader>
         </DialogContent>

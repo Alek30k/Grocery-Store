@@ -31,7 +31,13 @@ const Header = () => {
   return (
     <div className="p-5 shadow-sm flex justify-between">
       <div className="flex items-center gap-8">
-        <Image src={"/logo.png"} alt="logo" width={150} height={100} />
+        <Image
+          src={"/logo.png"}
+          alt="logo"
+          width={150}
+          height={100}
+          className="pointer-events-none"
+        />
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -56,6 +62,7 @@ const Header = () => {
                   alt="icon"
                   width={30}
                   height={30}
+                  className="pointer-events-none"
                 />
                 <h2 className="text-lg">{category?.attributes?.name}</h2>
               </DropdownMenuItem>

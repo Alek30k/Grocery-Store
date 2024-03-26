@@ -18,7 +18,7 @@ const CategoryList = ({ categoryList }) => {
               width={50}
               height={50}
               alt="icon"
-              className="group-hover:scale-125 transition-all ease-in-out"
+              className="group-hover:scale-125 transition-all ease-in-out pointer-events-none"
             />
             <h2 className="text-green-800">{category.attributes.name}</h2>
           </div>

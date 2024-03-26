@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import { ShoppingBasket } from "lucide-react";
 import Image from "next/image";
 
 const ProductItemDetail = ({ product }) => {
@@ -31,6 +33,20 @@ const ProductItemDetail = ({ product }) => {
           >
             ${product?.attributes?.mrp}
           </h2>
+        </div>
+        <h2 className="font-medium text-lg">
+          Quantity ({product?.attributes?.itemQuantityType})
+        </h2>
+        <div className="flex flex-col items-baseline ">
+          <div className="p-2 border flex gap-10 items-center px-5">
+            <button>-</button>
+            <h2 className="">1</h2>
+            <button>+</button>
+          </div>
+          <Button className="flex gap-3">
+            <ShoppingBasket />
+            Add to Cart
+          </Button>
         </div>
       </div>
     </div>

@@ -48,7 +48,7 @@ const ProductItemDetail = ({ product }) => {
           Quantity ({product?.attributes?.itemQuantityType})
         </h2>
         <div className="flex flex-col items-baseline gap-3">
-          <div className="">
+          <div className="flex gap-3 items-center">
             <div className="p-2 border flex gap-10 items-center px-5">
               <button
                 disabled={quantity === 1}
@@ -59,7 +59,10 @@ const ProductItemDetail = ({ product }) => {
               <h2 className="">{quantity}</h2>
               <button onClick={() => setQuantity(quantity + 1)}>+</button>
             </div>
-            <h2 className="">{quantity * productTotalPrice}</h2>
+            <h2 className="text-2xl font-bold">
+              {" "}
+              = ${(quantity * productTotalPrice).toFixed(2)}
+            </h2>
           </div>
           <Button className="flex gap-3">
             <ShoppingBasket />

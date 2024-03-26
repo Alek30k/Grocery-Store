@@ -1,8 +1,17 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { ShoppingBasket } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 const ProductItemDetail = ({ product }) => {
+  const [productTotalPrice, setProductTotalPrice] = useState(
+    product.attributes.sellingPrice
+      ? product.attributes.sellingPrice
+      : product.attributes.mpr
+  );
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 p-7 bg-white text-black">
       <Image
@@ -37,7 +46,7 @@ const ProductItemDetail = ({ product }) => {
         <h2 className="font-medium text-lg">
           Quantity ({product?.attributes?.itemQuantityType})
         </h2>
-        <div className="flex flex-col items-baseline ">
+        <div className="flex flex-col items-baseline gap-3">
           <div className="p-2 border flex gap-10 items-center px-5">
             <button>-</button>
             <h2 className="">1</h2>
@@ -48,6 +57,10 @@ const ProductItemDetail = ({ product }) => {
             Add to Cart
           </Button>
         </div>
+        <h2 className="">
+          <span className="font-bold">Category: </span>
+          {product?.attributes?.categories?.data[0]?.attributes?.name}
+        </h2>
       </div>
     </div>
   );

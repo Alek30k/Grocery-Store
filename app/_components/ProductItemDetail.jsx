@@ -13,11 +13,25 @@ const ProductItemDetail = ({ product }) => {
         height={300}
         className="bg-slate-200 p-5 h-[320px] w-[300px] object-contain pointer-events-none rounded-lg"
       />
-      <div>
+      <div className="flex flex-col gap-3">
         <h2 className="text-2xl font-bold">{product?.attributes?.name}</h2>
-        <h2 className="text-sm font-bold text-gray-500">
+        <h2 className="text-sm text-gray-500">
           {product?.attributes?.description}
         </h2>
+        <div className=" flex gap-3 ">
+          {product?.attributes?.sellingPrice && (
+            <h2 className="font-bold text-3xl">
+              ${product?.attributes?.sellingPrice}
+            </h2>
+          )}
+          <h2
+            className={`font-bold text-3xl ${
+              product?.attributes?.sellingPrice && "line-through text-gray-500"
+            }`}
+          >
+            ${product?.attributes?.mrp}
+          </h2>
+        </div>
       </div>
     </div>
   );

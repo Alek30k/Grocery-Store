@@ -11,6 +11,7 @@ const ProductItemDetail = ({ product }) => {
       ? product.attributes.sellingPrice
       : product.attributes.mpr
   );
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 p-7 bg-white text-black">
@@ -47,10 +48,18 @@ const ProductItemDetail = ({ product }) => {
           Quantity ({product?.attributes?.itemQuantityType})
         </h2>
         <div className="flex flex-col items-baseline gap-3">
-          <div className="p-2 border flex gap-10 items-center px-5">
-            <button>-</button>
-            <h2 className="">1</h2>
-            <button>+</button>
+          <div className="">
+            <div className="p-2 border flex gap-10 items-center px-5">
+              <button
+                disabled={quantity === 1}
+                onClick={() => setQuantity(quantity - 1)}
+              >
+                -
+              </button>
+              <h2 className="">{quantity}</h2>
+              <button onClick={() => setQuantity(quantity + 1)}>+</button>
+            </div>
+            <h2 className="">{quantity * productTotalPrice}</h2>
           </div>
           <Button className="flex gap-3">
             <ShoppingBasket />

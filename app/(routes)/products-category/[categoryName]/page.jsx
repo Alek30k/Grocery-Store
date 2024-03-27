@@ -1,5 +1,6 @@
 import GlobalApi from "@/app/_utils/GlobalApi";
 import TopCategoryList from "../_components/TopCategoryList";
+import ProductList from "@/app/_components/ProductList";
 
 const ProductCategory = async ({ params }) => {
   const productList = await GlobalApi.getAllProductsByCategory(
@@ -10,10 +11,13 @@ const ProductCategory = async ({ params }) => {
 
   return (
     <div className="">
-      <h2 className="p-4 bg-primary text-white font-bold text-center">
+      <h2 className="p-2 bg-primary text-white text-2xl font-bold text-center">
         {params.categoryName}
       </h2>
       <TopCategoryList categoryList={categoryList} />
+      <div className="p-5 md:p-10">
+        <ProductList productList={productList} />
+      </div>
     </div>
   );
 };

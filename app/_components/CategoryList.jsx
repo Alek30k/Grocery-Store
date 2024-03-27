@@ -9,7 +9,7 @@ const CategoryList = ({ categoryList }) => {
         {categoryList.map((category, index) => (
           <Link
             href={"/products-category/" + category.attributes.name}
-            className="flex flex-col items-center bg-green-50 gap-2 p-4 rounded-lg group cursor-pointer hover:bg-green-200"
+            className="flex flex-col items-center bg-green-50 gap-2 p-4 rounded-lg group cursor-pointer hover:bg-green-600  text-green-800 hover:text-white"
             key={index}
           >
             <Image
@@ -22,7 +22,8 @@ const CategoryList = ({ categoryList }) => {
               alt="icon"
               className="group-hover:scale-125 transition-all ease-in-out pointer-events-none"
             />
-            <h2 className="text-green-800">{category.attributes.name}</h2>
+            {category.attributes.name}
+            {/* <h2 className="text-green-800">{category.attributes.name}</h2> */}
           </Link>
         ))}
       </div>

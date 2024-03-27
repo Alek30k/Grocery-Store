@@ -13,6 +13,7 @@ const CreateAccount = () => {
   const [password, setPassword] = useState();
 
   const onCreateAccount = () => {
+    console.log("hola");
     GlobalApi.registerUser(username, email, password).then((resp) => {
       console.log(resp.data.user);
       console.log(resp.data.jwt);
@@ -43,7 +44,7 @@ const CreateAccount = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button
-            onClick={onCreateAccount()}
+            onClick={() => onCreateAccount()}
             disabled={!(username || email || password)}
           >
             Create an Account

@@ -38,7 +38,7 @@ const CreateAccount = () => {
           <Button onClick={onCreateAccount()}>Create an Account</Button>
           <p>
             Already have an account{" "}
-            <Link href={"/sign-in"} className="text-blue-500 ml-3">
+            <Link href={"/sign-in"} className="text-blue-500 ml-2">
               Click here to Sign In
             </Link>
           </p>

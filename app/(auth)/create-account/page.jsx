@@ -5,13 +5,20 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
+import GlobalApi from "@/app/_utils/GlobalApi";
 
 const CreateAccount = () => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const onCreateAccount = () => {};
+  const onCreateAccount = () => {
+    GlobalApi.registerUser(username, email, password).then((resp) => {
+      console.log(resp.data.user);
+      console.log(resp.data.jwt);
+      // return resp.data.user;
+    });
+  };
 
   return (
     <div className="flex items-baseline justify-center my-10">
@@ -35,7 +42,12 @@ const CreateAccount = () => {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={onCreateAccount()}>Create an Account</Button>
+          <Button
+            onClick={onCreateAccount()}
+            disabled={!(username || email || password)}
+          >
+            Create an Account
+          </Button>
           <p>
             Already have an account{" "}
             <Link href={"/sign-in"} className="text-blue-500 ml-2">

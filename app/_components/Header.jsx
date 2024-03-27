@@ -52,11 +52,11 @@ const Header = () => {
             <DropdownMenuLabel>Browse Category</DropdownMenuLabel>
             <DropdownMenuSeparator />
             {categoryList.map((category, index) => (
-              <Link href={"/products-category/" + category.attributes.name}>
-                <DropdownMenuItem
-                  key={index}
-                  className="flex gap-4 items-center cursor-pointer"
-                >
+              <Link
+                href={"/products-category/" + category.attributes.name}
+                key={index}
+              >
+                <DropdownMenuItem className="flex gap-4 items-center cursor-pointer">
                   <Image
                     src={
                       process.env.NEXT_PUBLIC_BACKEND_BASE_URL +

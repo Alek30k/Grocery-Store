@@ -52,23 +52,25 @@ const Header = () => {
             <DropdownMenuLabel>Browse Category</DropdownMenuLabel>
             <DropdownMenuSeparator />
             {categoryList.map((category, index) => (
-              <DropdownMenuItem
-                key={index}
-                className="flex gap-4 items-center cursor-pointer"
-              >
-                <Image
-                  src={
-                    process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
-                    category?.attributes?.icon?.data[0]?.attributes?.url
-                  }
-                  unoptimized={true}
-                  alt="icon"
-                  width={30}
-                  height={30}
-                  className="pointer-events-none"
-                />
-                <h2 className="text-lg">{category?.attributes?.name}</h2>
-              </DropdownMenuItem>
+              <Link href={"/products-category/" + category.attributes.name}>
+                <DropdownMenuItem
+                  key={index}
+                  className="flex gap-4 items-center cursor-pointer"
+                >
+                  <Image
+                    src={
+                      process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
+                      category?.attributes?.icon?.data[0]?.attributes?.url
+                    }
+                    unoptimized={true}
+                    alt="icon"
+                    width={30}
+                    height={30}
+                    className="pointer-events-none"
+                  />
+                  <h2 className="text-lg">{category?.attributes?.name}</h2>
+                </DropdownMenuItem>
+              </Link>
             ))}
           </DropdownMenuContent>
         </DropdownMenu>

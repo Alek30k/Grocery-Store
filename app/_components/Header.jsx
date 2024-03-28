@@ -89,7 +89,18 @@ const Header = () => {
             <Button>Login</Button>
           </Link>
         ) : (
-          <CircleUserRound className="w-12 h-12 bg-green-100 p-2 rounded-full text-primary" />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <CircleUserRound className="w-12 h-12 bg-green-100 p-2 rounded-full text-primary" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>My orders</DropdownMenuItem>
+              <DropdownMenuItem>Logout</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         )}
       </div>
     </div>

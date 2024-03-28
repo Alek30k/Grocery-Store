@@ -89,7 +89,7 @@ const Header = () => {
             <Button>Login</Button>
           </Link>
         ) : (
-          <CircleUserRound className="w-7 h-7" />
+          <CircleUserRound className="w-12 h-12 bg-green-100 p-2 rounded-full text-primary" />
         )}
       </div>
     </div>

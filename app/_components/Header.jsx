@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { LayoutGrid, Search, ShoppingBag } from "lucide-react";
+import { CircleUserRound, LayoutGrid, Search, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import {
   DropdownMenu,
@@ -17,7 +17,7 @@ import Link from "next/link";
 
 const Header = () => {
   const [categoryList, setCategoryList] = useState([]);
-  // console.log(categoryList[0]?.attributes?.icon?.data[0]?.attributes?.url);
+  const isLoading = sessionStorage.getItem("jwt") ? true : false;
 
   useEffect(() => {
     getCategoryList();
@@ -84,7 +84,13 @@ const Header = () => {
         <h2 className="flex items-center text-lg">
           <ShoppingBag /> 0
         </h2>
-        <Button>Login</Button>
+        {!isLoading ? (
+          <Link href={"/sign-in"}>
+            <Button>Login</Button>
+          </Link>
+        ) : (
+          <CircleUserRound className="w-7 h-7" />
+        )}
       </div>
     </div>
   );

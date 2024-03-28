@@ -6,19 +6,28 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
 import GlobalApi from "@/app/_utils/GlobalApi";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const CreateAccount = () => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const router = useRouter();
 
   const onCreateAccount = () => {
-    console.log("hola");
-    GlobalApi.registerUser(username, email, password).then((resp) => {
-      console.log(resp.data.user);
-      console.log(resp.data.jwt);
-      // return resp.data.user;
-    });
+    GlobalApi.registerUser(username, email, password).then(
+      (resp) => {
+        sessionStorage.setItem("user", JSON.stringify(resp.data.user));
+        sessionStorage.setItem("jwt", resp.data.jwt);
+        toast("Account Created Successfully");
+
+        router.push("/");
+      },
+      (e) => {
+        toast("Error while creating account");
+      }
+    );
   };
 
   return (

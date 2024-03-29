@@ -36,6 +36,7 @@ const ProductItemDetail = ({ product }) => {
         amount: (quantity * productTotalPrice).toFixed(2),
         products: product.id,
         users_permissions_users: user.id,
+        userId: user.id,
       },
     };
 

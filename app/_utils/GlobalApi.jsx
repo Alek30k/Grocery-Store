@@ -48,6 +48,17 @@ const addToCart = (data, jwt) =>
     },
   });
 
+const getCartItems = (userId, jwt) =>
+  axiosClient
+    .get("/user-carts?filters[userId][$eq]=" + userId + "&populate=*", {
+      headers: {
+        Authorization: "Bearer " + jwt,
+      },
+    })
+    .then((resp) => {
+      return resp.data.data;
+    });
+
 export default {
   getCategory,
   getSliders,
@@ -57,4 +68,5 @@ export default {
   registerUser,
   signIn,
   addToCart,
+  getCartItems,
 };

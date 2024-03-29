@@ -23,9 +23,15 @@ import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [categoryList, setCategoryList] = useState([]);
-  const isLoading = sessionStorage.getItem("jwt") ? true : false;
+  const isLogin = sessionStorage.getItem("jwt") ? true : false;
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  const jwt = sessionStorage.getItem("jwt");
   const [totalCartItem, setTotalCartItem] = useState(0);
   const router = useRouter();
+
+  useEffect(() => {
+    getCartItems();
+  }, []);
 
   useEffect(() => {
     getCategoryList();
@@ -37,7 +43,11 @@ const Header = () => {
     });
   };
 
-  const getCartItems = () => {};
+  const getCartItems = async () => {
+    const cartItemsList = await GlobalApi.getCartItems(user.id, jwt);
+
+    setTotalCartItem(cartItemsList?.length);
+  };
 
   const onSignOut = () => {
     sessionStorage.clear();
@@ -102,7 +112,7 @@ const Header = () => {
             {totalCartItem}
           </span>
         </h2>
-        {!isLoading ? (
+        {!isLogin ? (
           <Link href={"/sign-in"}>
             <Button>Login</Button>
           </Link>

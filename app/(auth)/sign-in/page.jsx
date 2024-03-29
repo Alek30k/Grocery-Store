@@ -14,7 +14,7 @@ const SignIn = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const router = useRouter();
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState();
 
   useEffect(() => {
     const jwt = sessionStorage.getItem("jwt");

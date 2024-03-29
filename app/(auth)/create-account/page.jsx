@@ -69,7 +69,11 @@ const CreateAccount = () => {
             onClick={() => onCreateAccount()}
             disabled={!(username || email || password)}
           >
-            Create an Account
+            {loader ? (
+              <LoaderIcon className="animate-spin" />
+            ) : (
+              "Create an Account"
+            )}
           </Button>
           <p>
             Already have an account{" "}

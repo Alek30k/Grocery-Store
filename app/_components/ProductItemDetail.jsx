@@ -3,15 +3,27 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingBasket } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const ProductItemDetail = ({ product }) => {
+  const jwt = sessionStorage.getItem("jwt");
+
   const [productTotalPrice, setProductTotalPrice] = useState(
     product.attributes.sellingPrice
       ? product.attributes.sellingPrice
       : product.attributes.mpr
   );
+
+  const router = useRouter();
   const [quantity, setQuantity] = useState(1);
+
+  const addToCart = () => {
+    if (!jwt) {
+      router.push("/sign-in");
+      return;
+    }
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 p-7 bg-white text-black">
@@ -64,7 +76,7 @@ const ProductItemDetail = ({ product }) => {
               = ${(quantity * productTotalPrice).toFixed(2)}
             </h2>
           </div>
-          <Button className="flex gap-3">
+          <Button className="flex gap-3" onClick={() => addToCart()}>
             <ShoppingBasket />
             Add to Cart
           </Button>

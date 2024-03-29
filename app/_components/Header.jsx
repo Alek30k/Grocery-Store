@@ -14,10 +14,12 @@ import {
 import GlobalApi from "../_utils/GlobalApi";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [categoryList, setCategoryList] = useState([]);
   const isLoading = sessionStorage.getItem("jwt") ? true : false;
+  const router = useRouter();
 
   useEffect(() => {
     getCategoryList();
@@ -27,6 +29,10 @@ const Header = () => {
     GlobalApi.getCategory().then((res) => {
       setCategoryList(res.data.data);
     });
+  };
+  const onSignOut = () => {
+    sessionStorage.clear();
+    router.push("/sign-in");
   };
 
   return (
@@ -91,14 +97,16 @@ const Header = () => {
         ) : (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <CircleUserRound className="w-12 h-12 bg-green-100 p-2 rounded-full text-primary" />
+              <CircleUserRound className="w-12 h-12 bg-green-100 p-2 rounded-full text-primary cursor-pointer" />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem>My orders</DropdownMenuItem>
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onSignOut()}>
+                Logout
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         )}

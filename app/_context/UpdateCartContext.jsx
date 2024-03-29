@@ -1,3 +1,3 @@
 const { createContext } = require("react");
 
-export UpdateCartContext= createContext(null)
+export const UpdateCartContext = createContext(null);

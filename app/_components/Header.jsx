@@ -17,9 +17,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import GlobalApi from "../_utils/GlobalApi";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { UpdateCartContext } from "../_context/UpdateCartContext";
 
 const Header = () => {
   const [categoryList, setCategoryList] = useState([]);
@@ -27,11 +28,13 @@ const Header = () => {
   const user = JSON.parse(sessionStorage.getItem("user"));
   const jwt = sessionStorage.getItem("jwt");
   const [totalCartItem, setTotalCartItem] = useState(0);
+  const { updateCart, setUpdateCart } = useContext(UpdateCartContext);
+
   const router = useRouter();
 
   useEffect(() => {
     getCartItems();
-  }, []);
+  }, [updateCart]);
 
   useEffect(() => {
     getCategoryList();

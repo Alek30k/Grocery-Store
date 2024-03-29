@@ -4,13 +4,15 @@ import { Button } from "@/components/ui/button";
 import { LoaderCircle, ShoppingBasket } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import GlobalApi from "../_utils/GlobalApi";
 import { toast } from "sonner";
+import { UpdateCartContext } from "../_context/UpdateCartContext";
 
 const ProductItemDetail = ({ product }) => {
   const jwt = sessionStorage.getItem("jwt");
   const user = JSON.parse(sessionStorage.getItem("user"));
+  const { updateCart, setUpdateCart } = useContext(UpdateCartContext);
 
   const [productTotalPrice, setProductTotalPrice] = useState(
     product.attributes.sellingPrice
@@ -46,6 +48,7 @@ const ProductItemDetail = ({ product }) => {
       (resp) => {
         // console.log(resp);
         toast("Added to cart");
+        setUpdateCart(!updateCart);
         setLoading(false);
       },
       (err) => {

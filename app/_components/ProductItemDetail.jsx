@@ -1,13 +1,16 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ShoppingBasket } from "lucide-react";
+import { LoaderCircle, ShoppingBasket } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import GlobalApi from "../_utils/GlobalApi";
+import { toast } from "sonner";
 
 const ProductItemDetail = ({ product }) => {
   const jwt = sessionStorage.getItem("jwt");
+  const user = JSON.parse(sessionStorage.getItem("user"));
 
   const [productTotalPrice, setProductTotalPrice] = useState(
     product.attributes.sellingPrice
@@ -17,12 +20,39 @@ const ProductItemDetail = ({ product }) => {
 
   const router = useRouter();
   const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const addToCart = () => {
+    setLoading(true);
     if (!jwt) {
       router.push("/sign-in");
+      setLoading(false);
       return;
     }
+
+    const data = {
+      data: {
+        quantity: quantity,
+        amount: (quantity * productTotalPrice).toFixed(2),
+        products: product.id,
+        users_permissions_users: user.id,
+      },
+    };
+
+    console.log(data);
+
+    GlobalApi.addToCart(data, jwt).then(
+      (resp) => {
+        console.log(resp);
+        toast("Added to cart");
+        setLoading(false);
+      },
+      (err) => {
+        console.log(err);
+        toast("Error while adding into cart");
+        setLoading(false);
+      }
+    );
   };
 
   return (
@@ -76,9 +106,17 @@ const ProductItemDetail = ({ product }) => {
               = ${(quantity * productTotalPrice).toFixed(2)}
             </h2>
           </div>
-          <Button className="flex gap-3" onClick={() => addToCart()}>
+          <Button
+            className="flex gap-3"
+            onClick={() => addToCart()}
+            disabled={loading}
+          >
             <ShoppingBasket />
-            Add to Cart
+            {loading ? (
+              <LoaderCircle className="animate-spin" />
+            ) : (
+              "Add To Cart"
+            )}
           </Button>
         </div>
         <h2 className="">

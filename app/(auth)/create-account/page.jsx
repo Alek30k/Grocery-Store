@@ -32,7 +32,8 @@ const CreateAccount = () => {
         router.push("/");
       },
       (e) => {
-        toast("Error while creating account");
+        // console.log(e);
+        toast(e?.response?.data?.error?.message);
       }
     );
   };

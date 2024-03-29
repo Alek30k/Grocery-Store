@@ -39,11 +39,11 @@ const ProductItemDetail = ({ product }) => {
       },
     };
 
-    console.log(data);
+    // console.log(data);
 
     GlobalApi.addToCart(data, jwt).then(
       (resp) => {
-        console.log(resp);
+        // console.log(resp);
         toast("Added to cart");
         setLoading(false);
       },

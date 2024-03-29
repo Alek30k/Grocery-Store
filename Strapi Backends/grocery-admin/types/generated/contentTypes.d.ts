@@ -914,6 +914,7 @@ export interface ApiUserCartUserCart extends Schema.CollectionType {
     singularName: 'user-cart';
     pluralName: 'user-carts';
     displayName: 'User Cart';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -931,6 +932,7 @@ export interface ApiUserCartUserCart extends Schema.CollectionType {
       'manyToMany',
       'plugin::users-permissions.user'
     >;
+    userId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

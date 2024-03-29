@@ -1,7 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CircleUserRound, LayoutGrid, Search, ShoppingBag } from "lucide-react";
+import {
+  CircleUserRound,
+  LayoutGrid,
+  Search,
+  ShoppingBasket,
+} from "lucide-react";
 import Image from "next/image";
 import {
   DropdownMenu,
@@ -19,6 +24,7 @@ import { useRouter } from "next/navigation";
 const Header = () => {
   const [categoryList, setCategoryList] = useState([]);
   const isLoading = sessionStorage.getItem("jwt") ? true : false;
+  const [totalCartItem, setTotalCartItem] = useState(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -30,6 +36,9 @@ const Header = () => {
       setCategoryList(res.data.data);
     });
   };
+
+  const getCartItems = () => {};
+
   const onSignOut = () => {
     sessionStorage.clear();
     router.push("/sign-in");
@@ -87,8 +96,11 @@ const Header = () => {
         </div>
       </div>
       <div className="flex gap-5 items-center">
-        <h2 className="flex items-center text-lg">
-          <ShoppingBag /> 0
+        <h2 className="flex items-center text-lg gap-2">
+          <ShoppingBasket className="h-7 w-7" />
+          <span className="bg-primary text-white px-2 rounded-full">
+            {totalCartItem}
+          </span>
         </h2>
         {!isLoading ? (
           <Link href={"/sign-in"}>

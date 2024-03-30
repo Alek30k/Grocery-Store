@@ -67,7 +67,7 @@ const getCartItems = (userId, jwt) =>
         quantity: item.attributes.quantity,
         amount: item.attributes.amount,
         image:
-          item.attributes.products?.data[0].attributes.image.data[0].attributes
+          item.attributes.products?.data[0].attributes.images.data[0].attributes
             .url,
         actualPrice: item.attributes.products?.data[0].attributes.mrp,
         id: item.id,

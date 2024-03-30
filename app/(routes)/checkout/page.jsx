@@ -59,15 +59,27 @@ const Checkout = () => {
         <div className="md:col-span-2 mx-20">
           <h2 className="font-bold text-3xl">Belling Details</h2>
           <div className="grid grid-cols-2 gap-10 mt-3">
-            <Input placeholder="name" />
-            <Input placeholder="email" />
+            <Input
+              placeholder="name"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <Input
+              placeholder="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className="grid grid-cols-2 gap-10 mt-3">
-            <Input placeholder="Phone" />
-            <Input placeholder="Zip" />
+            <Input
+              placeholder="Phone"
+              onChange={(e) => setPhone(e.target.value)}
+            />
+            <Input placeholder="Zip" onChange={(e) => setZip(e.target.value)} />
           </div>
           <div className="mt-3">
-            <Input placeholder="Address" />
+            <Input
+              placeholder="Address"
+              onChange={(e) => setAddress(e.target.value)}
+            />
           </div>
         </div>
         <div className="mx-10 border">
@@ -80,10 +92,10 @@ const Checkout = () => {
             </h2>
             <hr></hr>
             <h2 className="flex justify-between">
-              Delivery : <span>$15:00</span>
+              Delivery : <span>$15.00</span>
             </h2>
             <h2 className="flex justify-between">
-              Tax (9%) : <span>$250:00</span>
+              Tax (9%) : <span>${(totalCartItem * 0.9).toFixed(2)}</span>
             </h2>
             <hr></hr>
             <h2 className="font-bold flex justify-between">

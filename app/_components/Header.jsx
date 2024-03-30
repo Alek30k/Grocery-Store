@@ -29,6 +29,7 @@ const Header = () => {
   const jwt = sessionStorage.getItem("jwt");
   const [totalCartItem, setTotalCartItem] = useState(0);
   const { updateCart, setUpdateCart } = useContext(UpdateCartContext);
+  const [carItemList, setCarItemList] = useState([]);
 
   const router = useRouter();
 
@@ -47,9 +48,10 @@ const Header = () => {
   };
 
   const getCartItems = async () => {
-    const cartItemsList = await GlobalApi.getCartItems(user.id, jwt);
-
-    setTotalCartItem(cartItemsList?.length);
+    const cartItemsList_ = await GlobalApi.getCartItems(user.id, jwt);
+    console.log(cartItemsList_);
+    setTotalCartItem(cartItemsList_?.length);
+    setCarItemList(cartItemsList_);
   };
 
   const onSignOut = () => {

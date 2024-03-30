@@ -30,6 +30,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import CartItemList from "./CartItemList";
+import { toast } from "sonner";
 
 const Header = () => {
   const [categoryList, setCategoryList] = useState([]);
@@ -66,6 +67,13 @@ const Header = () => {
   const onSignOut = () => {
     sessionStorage.clear();
     router.push("/sign-in");
+  };
+
+  const onDeleteItem = (id) => {
+    GlobalApi.deleteCartItem(id, jwt).then((resp) => {
+      toast("Item removed !");
+      getCartItems();
+    });
   };
 
   return (
@@ -135,7 +143,10 @@ const Header = () => {
                 My Cart
               </SheetTitle>
               <SheetDescription>
-                <CartItemList cartItemList={cartItemList} />
+                <CartItemList
+                  cartItemList={cartItemList}
+                  onDeleteItem={onDeleteItem}
+                />
               </SheetDescription>
             </SheetHeader>
           </SheetContent>

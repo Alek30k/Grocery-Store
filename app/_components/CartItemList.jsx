@@ -5,7 +5,7 @@ import { TrashIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const CartItemList = ({ cartItemList }) => {
+const CartItemList = ({ cartItemList, onDeleteItem }) => {
   const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const CartItemList = ({ cartItemList }) => {
                 <h2 className="text-lg  font-bold">$ {cart.amount}</h2>
               </div>
             </div>
-            <TrashIcon />
+            <TrashIcon onClick={() => onDeleteItem(cart.id)} />
           </div>
         ))}
       </div>

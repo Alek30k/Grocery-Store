@@ -3,6 +3,7 @@
 import GlobalApi from "@/app/_utils/GlobalApi";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 import { ArrowBigRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -20,6 +21,8 @@ const Checkout = () => {
   const [phone, setPhone] = useState();
   const [zip, setZip] = useState();
   const [address, setAddress] = useState();
+
+  const [totalAmount, setTotalAmount] = useState();
 
   const router = useRouter();
 
@@ -47,6 +50,7 @@ const Checkout = () => {
 
   const calculateTotalAmount = () => {
     const totalAmount = subtotal * 0.9 + 15;
+    setTotalAmount(totalAmount.toFixed(2));
     return totalAmount.toFixed(2);
   };
 
@@ -101,9 +105,24 @@ const Checkout = () => {
             <h2 className="font-bold flex justify-between">
               Total : <span>${calculateTotalAmount()}</span>
             </h2>
-            <Button>
+            {/* <Button>
               Payment <ArrowBigRight />
-            </Button>
+            </Button> */}
+            <PayPalButtons
+              style={{ layout: "horizontal" }}
+              createOrder={(data, actions) => {
+                return actions.order.create({
+                  purchase_units: [
+                    {
+                      amount: {
+                        value: totalAmount,
+                        currency_code: "USD",
+                      },
+                    },
+                  ],
+                });
+              }}
+            />
           </div>
         </div>
       </div>

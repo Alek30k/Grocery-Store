@@ -4,6 +4,7 @@ import GlobalApi from "@/app/_utils/GlobalApi";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowBigRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Checkout = () => {
@@ -14,8 +15,19 @@ const Checkout = () => {
   const [cartItemList, setCartItemList] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
 
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
+  const [zip, setZip] = useState();
+  const [address, setAddress] = useState();
+
+  const router = useRouter();
+
   useEffect(() => {
     getCartItems();
+    if (!jwt) {
+      router.push("/sign-in");
+    }
   }, []);
 
   const getCartItems = async () => {
@@ -33,8 +45,9 @@ const Checkout = () => {
     setSubtotal(total);
   }, [cartItemList]);
 
-  const calculateTotalAmount = async () => {
-    totalAmount = 0;
+  const calculateTotalAmount = () => {
+    const totalAmount = subtotal * 0.9 + 15;
+    return totalAmount.toFixed(2);
   };
 
   return (
@@ -74,7 +87,7 @@ const Checkout = () => {
             </h2>
             <hr></hr>
             <h2 className="font-bold flex justify-between">
-              Total : <span>$350:00</span>
+              Total : <span>${calculateTotalAmount()}</span>
             </h2>
             <Button>
               Payment <ArrowBigRight />

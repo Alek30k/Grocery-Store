@@ -29,6 +29,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import CartItemList from "./CartItemList";
 
 const Header = () => {
   const [categoryList, setCategoryList] = useState([]);
@@ -37,7 +38,7 @@ const Header = () => {
   const jwt = sessionStorage.getItem("jwt");
   const [totalCartItem, setTotalCartItem] = useState(0);
   const { updateCart, setUpdateCart } = useContext(UpdateCartContext);
-  const [carItemList, setCarItemList] = useState([]);
+  const [cartItemList, setCartItemList] = useState([]);
 
   const router = useRouter();
 
@@ -59,7 +60,7 @@ const Header = () => {
     const cartItemsList_ = await GlobalApi.getCartItems(user.id, jwt);
     console.log(cartItemsList_);
     setTotalCartItem(cartItemsList_?.length);
-    setCarItemList(cartItemsList_);
+    setCartItemList(cartItemsList_);
   };
 
   const onSignOut = () => {
@@ -134,8 +135,7 @@ const Header = () => {
                 My Cart
               </SheetTitle>
               <SheetDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
+                <CartItemList cartItemList={cartItemList} />
               </SheetDescription>
             </SheetHeader>
           </SheetContent>

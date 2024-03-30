@@ -14,7 +14,7 @@ const CartItemList = ({ cartItemList }) => {
       total = total + element.amount;
     });
     setSubtotal(total);
-  }, []);
+  }, [cartItemList]);
 
   return (
     <div className="">
@@ -44,7 +44,7 @@ const CartItemList = ({ cartItemList }) => {
       </div>
       <div className="absolute w-[90%] bottom-6 flex flex-col">
         <h2 className="font-bold text-lg flex justify-between">
-          Subtotal <span>$90</span>
+          Subtotal <span>${subtotal}</span>
         </h2>
         <Button>View Cart</Button>
       </div>

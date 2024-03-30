@@ -1,7 +1,21 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
 import { TrashIcon } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const CartItemList = ({ cartItemList }) => {
+  const [subtotal, setSubtotal] = useState(0);
+
+  useEffect(() => {
+    let total = 0;
+    cartItemList.forEach((element) => {
+      total = total + element.amount;
+    });
+    setSubtotal(total);
+  }, []);
+
   return (
     <div className="">
       <div className="">
@@ -27,6 +41,12 @@ const CartItemList = ({ cartItemList }) => {
             <TrashIcon />
           </div>
         ))}
+      </div>
+      <div className="absolute w-[90%] bottom-6 flex flex-col">
+        <h2 className="font-bold text-lg flex justify-between">
+          Subtotal <span>$90</span>
+        </h2>
+        <Button>View Cart</Button>
       </div>
     </div>
   );

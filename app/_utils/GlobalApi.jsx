@@ -76,6 +76,13 @@ const getCartItems = (userId, jwt) =>
       return cartItemsList;
     });
 
+const deleteCartItem = (id, jwt) =>
+  axiosClient.delete("/user-carts/" + id, {
+    headers: {
+      Authorization: "Bearer " + jwt,
+    },
+  });
+
 export default {
   getCategory,
   getSliders,
@@ -86,4 +93,5 @@ export default {
   signIn,
   addToCart,
   getCartItems,
+  deleteCartItem,
 };

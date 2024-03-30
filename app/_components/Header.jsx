@@ -23,6 +23,7 @@ import { useRouter } from "next/navigation";
 import { UpdateCartContext } from "../_context/UpdateCartContext";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -59,7 +60,7 @@ const Header = () => {
 
   const getCartItems = async () => {
     const cartItemsList_ = await GlobalApi.getCartItems(user.id, jwt);
-    console.log(cartItemsList_);
+    // console.log(cartItemsList_);
     setTotalCartItem(cartItemsList_?.length);
     setCartItemList(cartItemsList_);
   };
@@ -75,6 +76,16 @@ const Header = () => {
       getCartItems();
     });
   };
+
+  const [subtotal, setSubtotal] = useState(0);
+
+  useEffect(() => {
+    let total = 0;
+    cartItemList.forEach((element) => {
+      total = total + element.amount;
+    });
+    setSubtotal(total);
+  }, [cartItemList]);
 
   return (
     <div className="p-5 shadow-sm flex justify-between">
@@ -149,6 +160,18 @@ const Header = () => {
                 />
               </SheetDescription>
             </SheetHeader>
+            <SheetClose asChild>
+              <div className="absolute w-[90%] bottom-6 flex flex-col">
+                <h2 className="font-bold text-lg flex justify-between">
+                  Subtotal <span>${subtotal}</span>
+                </h2>
+                <Button
+                  onClick={() => router.push(jwt ? "/checkout" : "/sign-in")}
+                >
+                  Checkout
+                </Button>
+              </div>
+            </SheetClose>
           </SheetContent>
         </Sheet>
 

@@ -3,21 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { TrashIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const CartItemList = ({ cartItemList, onDeleteItem }) => {
-  const [subtotal, setSubtotal] = useState(0);
-
-  useEffect(() => {
-    let total = 0;
-    cartItemList.forEach((element) => {
-      total = total + element.amount;
-    });
-    setSubtotal(total);
-  }, [cartItemList]);
-
   return (
-    <div className="">
+    <div className="h-[600px] overflow-auto">
       <div className="">
         {cartItemList.map((cart, index) => (
           <div
@@ -38,15 +29,12 @@ const CartItemList = ({ cartItemList, onDeleteItem }) => {
                 <h2 className="text-lg  font-bold">$ {cart.amount}</h2>
               </div>
             </div>
-            <TrashIcon onClick={() => onDeleteItem(cart.id)} />
+            <TrashIcon
+              onClick={() => onDeleteItem(cart.id)}
+              className="cursor-pointer "
+            />
           </div>
         ))}
-      </div>
-      <div className="absolute w-[90%] bottom-6 flex flex-col">
-        <h2 className="font-bold text-lg flex justify-between">
-          Subtotal <span>${subtotal}</span>
-        </h2>
-        <Button>View Cart</Button>
       </div>
     </div>
   );

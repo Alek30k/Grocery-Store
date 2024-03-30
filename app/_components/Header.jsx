@@ -36,12 +36,11 @@ import { toast } from "sonner";
 const Header = () => {
   const [categoryList, setCategoryList] = useState([]);
   const isLogin = sessionStorage.getItem("jwt") ? true : false;
-  const user = JSON.parse(sessionStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem("user")).id;
   const jwt = sessionStorage.getItem("jwt");
   const [totalCartItem, setTotalCartItem] = useState(0);
   const { updateCart, setUpdateCart } = useContext(UpdateCartContext);
   const [cartItemList, setCartItemList] = useState([]);
-
   const router = useRouter();
 
   useEffect(() => {
@@ -59,7 +58,7 @@ const Header = () => {
   };
 
   const getCartItems = async () => {
-    const cartItemsList_ = await GlobalApi.getCartItems(user.id, jwt);
+    const cartItemsList_ = await GlobalApi.getCartItems(user, jwt);
     // console.log(cartItemsList_);
     setTotalCartItem(cartItemsList_?.length);
     setCartItemList(cartItemsList_);

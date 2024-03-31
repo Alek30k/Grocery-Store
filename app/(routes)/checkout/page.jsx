@@ -73,8 +73,11 @@ const Checkout = () => {
       },
     };
     GlobalApi.createOrder(payload, jwt).then((resp) => {
-      console.log(resp);
       toast("Order Places successfully!");
+      cartItemList.forEach((item, index) => {
+        GlobalApi.deleteCartItem(item.id).then((resp) => {});
+      });
+      router.replace("/order-confirmation");
     });
   };
 

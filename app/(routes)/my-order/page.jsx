@@ -40,22 +40,24 @@ const MyOrder = () => {
           {orderList.map((item, index) => (
             <Collapsible key={index}>
               <CollapsibleTrigger>
-                <div className="border p-2 bg-slate-200">
+                <div className="border p-2 bg-slate-100 flex justify-evenly gap-24">
                   <h2 className="">
-                    <span className="font-bold mr-2">Order Date: </span>{" "}
+                    <span className="font-bold mr-2">Order Date: </span>
                     {moment(item?.createdAt).format("DD/MM/YY")}
                   </h2>
                   <h2 className="">
-                    {" "}
-                    <span className="font-bold mr-2">Total Amount: </span>{" "}
+                    <span className="font-bold mr-2">Total Amount: </span>
                     {item?.totalOrderAmount}
+                  </h2>
+                  <h2 className="">
+                    <span className="font-bold mr-2">Status: </span>
+                    PENDING
                   </h2>
                 </div>
               </CollapsibleTrigger>
-              <CollapsibleContent>
-                Yes. Free to use for personal and commercial projects. No
-                attribution required.
-              </CollapsibleContent>
+              <CollapsibleContent>{item.orderItemList.map((order,idx)=>(
+
+              )}</CollapsibleContent>
             </Collapsible>
           ))}
         </div>

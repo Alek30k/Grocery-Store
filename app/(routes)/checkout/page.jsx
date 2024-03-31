@@ -69,6 +69,7 @@ const Checkout = () => {
         zip: zip,
         address: address,
         orderItemList: cartItemList,
+        userId: user.id,
       },
     };
     GlobalApi.createOrder(payload, jwt).then((resp) => {
@@ -128,11 +129,12 @@ const Checkout = () => {
             <h2 className="font-bold flex justify-between">
               Total : <span>${calculateTotalAmount()}</span>
             </h2>
-            <Button onClick={() => onApprove({ paymentId: 123 })}>
+            {/* <Button onClick={() => onApprove({ paymentId: 123 })}>
               Payment <ArrowBigRight />
-            </Button>
+            </Button> */}
             {totalAmount > 15 && (
               <PayPalButtons
+                disabled={!(username && email && address && zip)}
                 style={{ layout: "horizontal" }}
                 onApprove={onApprove}
                 createOrder={(data, actions) => {

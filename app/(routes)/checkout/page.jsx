@@ -47,12 +47,16 @@ const Checkout = () => {
       total = total + element.amount;
     });
     setTotalAmount((total * 0.9 + 15).toFixed(2));
-    setSubtotal(total);
+    setSubtotal(total.toFixed(2));
   }, [cartItemList]);
 
   const calculateTotalAmount = () => {
     const totalAmount = subtotal * 0.9 + 15;
     return totalAmount.toFixed(2);
+  };
+
+  const onApprove = (data) => {
+    console.log(data);
   };
 
   return (
@@ -109,21 +113,24 @@ const Checkout = () => {
             {/* <Button>
               Payment <ArrowBigRight />
             </Button> */}
-            <PayPalButtons
-              style={{ layout: "horizontal" }}
-              createOrder={(data, actions) => {
-                return actions.order.create({
-                  purchase_units: [
-                    {
-                      amount: {
-                        value: totalAmount,
-                        currency_code: "USD",
+            {totalAmount > 15 && (
+              <PayPalButtons
+                style={{ layout: "horizontal" }}
+                onApprove={onApprove}
+                createOrder={(data, actions) => {
+                  return actions.order.create({
+                    purchase_units: [
+                      {
+                        amount: {
+                          value: totalAmount,
+                          currency_code: "USD",
+                        },
                       },
-                    },
-                  ],
-                });
-              }}
-            />
+                    ],
+                  });
+                }}
+              />
+            )}
           </div>
         </div>
       </div>

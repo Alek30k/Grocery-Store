@@ -100,6 +100,7 @@ const getMyOrder = (userId, jwt) =>
     )
     .then((resp) => {
       const response = resp.data.data;
+
       const orderList = response.map((item) => ({
         id: item.id,
         totalOrderAmount: item.attributes.totalOrderAmount,

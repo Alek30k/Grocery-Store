@@ -9,6 +9,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import moment from "moment";
+import MyOrderItem from "./_components/MyOrderItem";
 
 const MyOrder = () => {
   const jwt = sessionStorage.getItem("jwt");
@@ -55,9 +56,11 @@ const MyOrder = () => {
                   </h2>
                 </div>
               </CollapsibleTrigger>
-              <CollapsibleContent>{item.orderItemList.map((order,idx)=>(
-
-              )}</CollapsibleContent>
+              <CollapsibleContent>
+                {item.orderItemList.map((order, idx) => (
+                  <MyOrderItem />
+                ))}
+              </CollapsibleContent>
             </Collapsible>
           ))}
         </div>

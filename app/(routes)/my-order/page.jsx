@@ -58,7 +58,7 @@ const MyOrder = () => {
               </CollapsibleTrigger>
               <CollapsibleContent>
                 {item.orderItemList.map((order, idx) => (
-                  <MyOrderItem />
+                  <MyOrderItem orderItem={order} key={idx} />
                 ))}
               </CollapsibleContent>
             </Collapsible>

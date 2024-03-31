@@ -2,16 +2,18 @@
 
 import GlobalApi from "@/app/_utils/GlobalApi";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import moment from "moment";
 
 const MyOrder = () => {
   const jwt = sessionStorage.getItem("jwt");
   const user = JSON.parse(sessionStorage.getItem("user")).id;
+  const [orderList, setOrderList] = useState([]);
 
   const router = useRouter();
 
@@ -23,7 +25,8 @@ const MyOrder = () => {
   }, []);
 
   const getMyOrder = async () => {
-    const orderList = await GlobalApi.getMyOrder(user, jwt);
+    const orderList_ = await GlobalApi.getMyOrder(user, jwt);
+    setOrderList(orderList_);
   };
 
   return (
@@ -33,6 +36,29 @@ const MyOrder = () => {
       </h2>
       <div className="py-8 mx-7 md:mx-20">
         <h2 className="text-3xl font-bold text-primary">Order History</h2>
+        <div className="">
+          {orderList.map((item, index) => (
+            <Collapsible key={index}>
+              <CollapsibleTrigger>
+                <div className="border p-2 bg-slate-200">
+                  <h2 className="">
+                    <span className="font-bold mr-2">Order Date: </span>{" "}
+                    {moment(item?.createdAt).format("DD/MM/YY")}
+                  </h2>
+                  <h2 className="">
+                    {" "}
+                    <span className="font-bold mr-2">Total Amount: </span>{" "}
+                    {item?.totalOrderAmount}
+                  </h2>
+                </div>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                Yes. Free to use for personal and commercial projects. No
+                attribution required.
+              </CollapsibleContent>
+            </Collapsible>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -71,6 +71,7 @@ const getCartItems = (userId, jwt) =>
             .url,
         actualPrice: item.attributes.products?.data[0].attributes.mrp,
         id: item.id,
+        products: item.attributes.products?.data[0].id,
       }));
 
       return cartItemsList;
@@ -78,6 +79,13 @@ const getCartItems = (userId, jwt) =>
 
 const deleteCartItem = (id, jwt) =>
   axiosClient.delete("/user-carts/" + id, {
+    headers: {
+      Authorization: "Bearer " + jwt,
+    },
+  });
+
+const createOrder = (data, jwt) =>
+  axiosClient.post("/orders", data, {
     headers: {
       Authorization: "Bearer " + jwt,
     },
@@ -94,4 +102,5 @@ export default {
   addToCart,
   getCartItems,
   deleteCartItem,
+  createOrder,
 };

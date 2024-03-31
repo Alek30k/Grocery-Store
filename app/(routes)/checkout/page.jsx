@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const Checkout = () => {
   const user = JSON.parse(sessionStorage.getItem("user")).id;
@@ -57,6 +58,22 @@ const Checkout = () => {
 
   const onApprove = (data) => {
     console.log(data);
+    const payload = {
+      data: {
+        paymentId: data.paymentId,
+        totalOrderAmount: totalAmount,
+        username: username,
+        email: email,
+        phone: phone,
+        zip: zip,
+        address: address,
+        orderItemList: cartItemList,
+      },
+    };
+    GlobalApi.createOrder(payload, jwt).then((resp) => {
+      console.log(resp);
+      toast("Order Places successfully!");
+    });
   };
 
   return (

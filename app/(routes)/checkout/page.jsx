@@ -4,6 +4,7 @@ import GlobalApi from "@/app/_utils/GlobalApi";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import { ArrowBigRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -44,6 +45,7 @@ const Checkout = () => {
 
   useEffect(() => {
     let total = 0;
+
     cartItemList.forEach((element) => {
       total = total + element.amount;
     });
@@ -57,10 +59,9 @@ const Checkout = () => {
   };
 
   const onApprove = (data) => {
-    console.log(data);
     const payload = {
       data: {
-        paymentId: data.paymentId,
+        paymentId: data.paymentId.toString(),
         totalOrderAmount: totalAmount,
         username: username,
         email: email,
@@ -127,9 +128,9 @@ const Checkout = () => {
             <h2 className="font-bold flex justify-between">
               Total : <span>${calculateTotalAmount()}</span>
             </h2>
-            {/* <Button>
+            <Button onClick={() => onApprove({ paymentId: 123 })}>
               Payment <ArrowBigRight />
-            </Button> */}
+            </Button>
             {totalAmount > 15 && (
               <PayPalButtons
                 style={{ layout: "horizontal" }}

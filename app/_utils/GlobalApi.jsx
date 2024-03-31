@@ -71,7 +71,7 @@ const getCartItems = (userId, jwt) =>
             .url,
         actualPrice: item.attributes.products?.data[0].attributes.mrp,
         id: item.id,
-        products: item.attributes.products?.data[0].id,
+        product: item.attributes.products?.data[0].id,
       }));
 
       return cartItemsList;

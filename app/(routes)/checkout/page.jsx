@@ -4,7 +4,6 @@ import GlobalApi from "@/app/_utils/GlobalApi";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import { ArrowBigRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -23,6 +22,8 @@ const Checkout = () => {
   const [address, setAddress] = useState();
 
   const [totalAmount, setTotalAmount] = useState();
+
+  // console.log(totalAmount);
 
   const router = useRouter();
 
@@ -45,12 +46,12 @@ const Checkout = () => {
     cartItemList.forEach((element) => {
       total = total + element.amount;
     });
+    setTotalAmount((total * 0.9 + 15).toFixed(2));
     setSubtotal(total);
   }, [cartItemList]);
 
   const calculateTotalAmount = () => {
     const totalAmount = subtotal * 0.9 + 15;
-    setTotalAmount(totalAmount.toFixed(2));
     return totalAmount.toFixed(2);
   };
 

@@ -188,7 +188,9 @@ const Header = () => {
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>My orders</DropdownMenuItem>
+              <Link href={"/my-order"}>
+                <DropdownMenuItem>My orders</DropdownMenuItem>
+              </Link>
               <DropdownMenuItem onClick={() => onSignOut()}>
                 Logout
               </DropdownMenuItem>

@@ -107,6 +107,7 @@ const getMyOrder = (userId, jwt) =>
         paymentId: item.attributes.paymentId,
         orderItemList: item.attributes.orderItemList,
         createdAt: item.attributes.createdAt,
+        status: item.attributes.Status,
       }));
       return orderList;
     });

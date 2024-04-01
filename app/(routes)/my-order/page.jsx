@@ -36,12 +36,12 @@ const MyOrder = () => {
         My Order
       </h2>
       <div className="py-8 mx-7 md:mx-20">
-        <h2 className="text-3xl font-bold text-primary">Order History</h2>
+        <h2 className="text-3xl font-bold text-primary mb-10">Order History</h2>
         <div className="">
           {orderList.map((item, index) => (
             <Collapsible key={index}>
               <CollapsibleTrigger>
-                <div className="border p-2 bg-slate-100 flex justify-evenly gap-24">
+                <div className="border p-2 bg-slate-100 flex gap-24">
                   <h2 className="">
                     <span className="font-bold mr-2">Order Date: </span>
                     {moment(item?.createdAt).format("DD/MM/YY")}
@@ -52,7 +52,7 @@ const MyOrder = () => {
                   </h2>
                   <h2 className="">
                     <span className="font-bold mr-2">Status: </span>
-                    PENDING
+                    {item?.status}
                   </h2>
                 </div>
               </CollapsibleTrigger>

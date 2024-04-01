@@ -77,7 +77,7 @@ const Checkout = () => {
       cartItemList.forEach((item, index) => {
         GlobalApi.deleteCartItem(item.id).then((resp) => {});
       });
-      router.replace("/order-confirmation");
+      router.replace("/order-confimation");
     });
   };
 

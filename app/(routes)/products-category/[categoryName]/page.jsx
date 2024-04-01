@@ -9,10 +9,12 @@ const ProductCategory = async ({ params }) => {
 
   const categoryList = await GlobalApi.getCategoryList();
 
+  const decodedCategoryName = decodeURIComponent(params.categoryName);
+
   return (
     <div className="">
       <h2 className="p-2 bg-primary text-white text-2xl font-bold text-center">
-        {params.categoryName}
+        {decodedCategoryName}
       </h2>
       <TopCategoryList
         categoryList={categoryList}
